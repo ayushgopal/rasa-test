@@ -1,0 +1,233 @@
+version: "2.0"
+
+rules:
+
+#- rule: Say goodbye anytime the user says goodbye
+#  steps:
+#  - intent: goodbye
+#  - action: utter_goodbye
+
+#- rule: greet
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+
+- rule: Do the following whenever intent Add Talking Point is detected
+  steps:
+  - intent: add_talking_point
+  - action: utter_intent_add_talking_point
+  - action: talking_point_form
+  - active_loop: talking_point_form
+  #- action: utter_slots_values_talking_point
+  #- action: action_talking_point
+
+- rule: Submit Talking Point form
+  condition:
+  # Condition that form is active.
+  - active_loop: talking_point_form
+  steps:
+  # Form is deactivated
+  - action: talking_point_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  # The actions we want to run when the form is submitted.
+  - action: utter_submit
+  - action: utter_slots_values_talking_point_form
+  - action: action_add_talking_point
+  - action: action_deactivate_loop
+  - action: action_reset_slots
+
+- rule: Do the following whenever intent Add Action Item is detected
+  steps:
+  - intent: add_action_item
+  - action: utter_intent_add_action_item
+  - action: actionitem_form
+  - active_loop: actionitem_form
+  #- action: utter_slots_values_talking_point
+  #- action: action_talking_point
+
+- rule: Submit Action Item form
+  condition:
+  # Condition that form is active.
+  - active_loop: actionitem_form
+  steps:
+  # Form is deactivated
+  - action: actionitem_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  # The actions we want to run when the form is submitted.
+  - action: action_get_deadline
+  #- action: action_validate_deadline
+  #- action: action_get_deadline
+  - action: utter_submit
+  - action: utter_slots_values_actionitem_form
+  - action: action_add_action_item
+  - action: action_deactivate_loop
+  - action: action_reset_slots
+
+- rule: Do the following whenever intent Edit Talking Point is detected
+  steps:
+  - intent: edit_talking_point
+  - action: utter_intent_edit_talking_point
+  - action: display_talking_points
+  #- action: utter_ask_id
+  #- action: action_listen
+  #- action: action_get_id
+  - action: new_talking_point_form
+  - active_loop: new_talking_point_form
+  #- action: utter_submit
+  #- active_loop: id_form 
+  #- action: utter_ask_new_talking_point_text
+  #- action: action_listen
+  #- action: action_get_new_talking_point_text
+  #- action: action_edit_talking_point
+  #- action: action_reset_slots
+  #- action: utter_slots_values_talking_point
+  #- action: action_talking_point
+
+- rule: Submit New Talking Point form
+  condition:
+  # Condition that form is active.
+  - active_loop: new_talking_point_form
+  steps:
+  # Form is deactivated
+  - action: new_talking_point_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  # The actions we want to run when the form is submitted.
+  - action: utter_submit
+  #- action: utter_slots_values_new_talking_point_form
+  - action: action_edit_talking_point
+  - action: action_deactivate_loop
+  - action: action_reset_slots
+
+- rule: Do the following whenever intent Delete Talking Point is detected
+  steps:
+  - intent: delete_talking_point
+  - action: utter_intent_delete_talking_point
+  - action: display_talking_points
+  #- action: utter_ask_id
+  #- action: action_listen
+  #- action: action_get_id
+  - action: id_form
+  - action: utter_submit
+  #- active_loop: id_form 
+  - action: action_delete_talking_point
+  - action: action_reset_slots
+
+- rule: Do the following whenever intent Edit Action Item is detected
+  steps:
+  - intent: edit_action_item
+  - action: utter_intent_edit_action_item
+  - action: display_action_items
+  #- action: utter_ask_id
+  #- action: action_listen
+  #- action: action_get_id
+  - action: new_action_item_form
+  - active_loop: new_action_item_form
+  #- active_loop: id_form 
+  #- action: action_ask_field
+  #- action: action_listen
+  #- action: action_get_field
+  #- action: action_ask_new_field_value
+  #- action: action_listen
+  #- action: action_get_new_field_value
+  #- action: action_edit_action_item
+  #- action: action_reset_slots
+
+- rule: Submit New Action Item form
+  condition:
+  # Condition that form is active.
+  - active_loop: new_action_item_form
+  steps:
+  # Form is deactivated
+  - action: new_action_item_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  # The actions we want to run when the form is submitted.
+  - action: utter_submit
+  #- action: utter_slots_values_new_action_item_form
+  - action: action_edit_action_item
+  - action: action_deactivate_loop
+  - action: action_reset_slots
+
+- rule: Do the following whenever intent Delete Action Item is detected
+  steps:
+  - intent: delete_action_item
+  - action: utter_intent_delete_action_item
+  - action: display_action_items
+  #- action: utter_ask_id
+  #- action: action_listen
+  #- action: action_get_id
+  - action: id_form
+  - action: utter_submit
+  #- active_loop: id_form 
+  - action: action_delete_action_item
+  - action: action_reset_slots
+
+- rule: Do the following whenever intent Show Talking Points is detected
+  steps:
+  - intent: show_talking_points
+  - action: display_talking_points
+
+- rule: Do the following whenever intent Show Action Items is detected
+  steps:
+  - intent: show_action_items
+  - action: display_action_items
+
+- rule: Do the following whenever intent Talking Points is detected
+  steps:
+  - intent: talking_points
+  - action: utter_intent_add_talking_point
+  - action: talking_point_form_2
+  - active_loop: talking_point_form_2
+  #- action: utter_slots_values_talking_point
+  #- action: action_talking_point
+
+- rule: Submit Talking Point form 2
+  condition:
+  # Condition that form is active.
+  - active_loop: talking_point_form_2
+  steps:
+  # Form is deactivated
+  - action: talking_point_form_2
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  # The actions we want to run when the form is submitted.
+  - action: utter_submit
+  - action: utter_slots_values_talking_point_form_2
+  - action: action_add_talking_point_2
+  - action: action_deactivate_loop
+  - action: action_reset_slots
+
+- rule: Do the following whenever intent Action Items is detected
+  steps:
+  - intent: actionitems
+  - action: utter_intent_add_action_item
+  - action: actionitem_form_2
+  - active_loop: actionitem_form_2
+  #- action: utter_slots_values_talking_point
+  #- action: action_talking_point
+
+- rule: Submit Action Item form 2
+  condition:
+  # Condition that form is active.
+  - active_loop: actionitem_form_2
+  steps:
+  # Form is deactivated
+  - action: actionitem_form_2
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  # The actions we want to run when the form is submitted.
+  - action: action_get_deadline
+  - action: utter_submit
+  - action: utter_slots_values_actionitem_form_2
+  - action: action_add_action_item_2
+  - action: action_deactivate_loop
+  - action: action_reset_slots

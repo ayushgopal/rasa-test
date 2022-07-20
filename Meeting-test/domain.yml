@@ -1,0 +1,397 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - add_talking_point
+  - edit_talking_point
+  - delete_talking_point
+  - add_action_item
+  - edit_action_item
+  - delete_action_item
+  - id
+  - show_talking_points
+  - show_action_items
+  - talking_points
+  - actionitems
+
+entities:
+  - owner
+  - deadline
+  - action_item_text
+  - action_item_id
+  - talking_point_text
+  - talking_point_id
+  - id
+  - time
+  - number
+
+slots:
+  owner:
+    type: any
+    influence_conversation: false
+    auto_fill: false
+    #mappings:
+      #- type: from_entity
+      #  entity: owner
+
+  deadline:
+    type: any
+    influence_conversation: false
+    #mappings:
+      #- type: custom
+      #  action: action_get_deadline
+
+  owner_2:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: from_entity
+    #    entity: owner
+    #    intent: actionitems
+
+  deadline_2:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: custom
+    #    action: action_get_deadline
+
+  time:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: from_entity
+    #    entity: time
+  
+  action_item_text:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: from_text
+    #    conditions: 
+    #      - active_loop: actionitem_form
+    #        requested_slot: action_item_text
+
+  action_item_id:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: custom
+    #    action: action_get_action_item_id
+    #    conditions: 
+    #      - active_loop: actionitem_form
+  
+  action_item_id_2:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: custom
+    #    action: action_get_action_item_id
+    #    intent: actionitems
+
+  talking_point_text:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: from_text
+    #    conditions: 
+    #      - active_loop: talking_point_form
+    #        requested_slot: talking_point_text
+
+  talking_point_id:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: custom
+    #    action: action_get_talking_point_id
+    #    conditions: 
+    #      - active_loop: talking_point_form
+
+  talking_point_id_2:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: custom
+    #    action: action_get_talking_point_id
+    #    intent: talking_points
+
+  action_item_text_2:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: from_text
+    #    intent: actionitems
+
+  talking_point_text_2:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: from_text
+    #    intent: talking_points
+  
+  field:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: from_text
+    #    conditions: 
+    #      - active_loop: new_action_item_form
+    #        requested_slot: field
+  
+  talking_point_id_modify:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: from_text
+    #    conditions: 
+    #      - active_loop: new_talking_point_form
+    #        requested_slot: talking_point_id_modify
+
+  new_talking_point_text:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: from_text
+    #    conditions: 
+    #      - active_loop: new_talking_point_form
+    #        requested_slot: new_talking_point_text
+
+  action_item_id_modify:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: from_text
+    #    conditions: 
+    #      - active_loop: new_action_item_form
+    #        requested_slot: action_item_id_modify
+ 
+  new_field_value:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: from_text
+    #    conditions: 
+    #      - active_loop: new_action_item_form
+    #        requested_slot: new_field_value
+
+  id:
+    type: any
+    influence_conversation: false
+    #mappings:
+    #  - type: from_text
+    #    conditions: 
+    #      - active_loop: id_form
+    #        requested_slot: id
+
+
+actions:
+  - action_get_owner
+  #- action_get_owner_2
+  - action_get_deadline
+  #- action_get_deadline_2
+  - action_get_action_item_text
+  - action_get_action_item_id
+  #- action_get_action_item_id_2
+  - action_get_talking_point_text
+  - action_get_talking_point_id
+  #- action_get_talking_point_id_2
+  - action_add_talking_point
+  - action_add_talking_point_2
+  - action_add_action_item
+  - action_add_action_item_2
+  - action_get_id
+  - action_ask_field
+  - action_get_field
+  - action_ask_new_field_value
+  - action_get_new_field_value
+  - action_get_new_talking_point_text
+  - action_edit_talking_point
+  - action_delete_talking_point
+  - action_edit_action_item
+  - action_delete_action_item
+  - action_reset_slots
+  - display_talking_points
+  - display_action_items
+  - validate_actionitem_form
+  - validate_talking_point_form
+  - action_validate_deadline
+  - action_validate_owner
+
+responses:
+  utter_greet:
+    - text: "Hey! I'm Fogcub"
+
+  utter_goodbye:
+    - text: "Bye"
+  
+  utter_ask_actionitem_form_owner:
+    - text: "Please provide Owner/s.\n Slots so far:\n - Id: {action_item_id}\n - Action Item Text: {action_item_text}\n - Owner: {owner}\n - Deadline: {deadline}\n - Time: {time}\n"
+  
+  utter_ask_actionitem_form_2_owner_2:
+    - text: "Please provide Owner/s.\n Slots so far:\n - Id: {action_item_id_2}\n - Action Item Text: {action_item_text_2}\n - Owner: {owner_2}\n - Deadline: {deadline_2}\n - Time: {time}\n"
+  #utter_ask_actionitem_form_deadline:
+    #- text: "Please provide Deadline. "
+
+  utter_ask_actionitem_form_time:
+    - text: "Please provide Deadline.\n Slots so far:\n - Id: {action_item_id}\n - Action Item Text: {action_item_text}\n - Owner: {owner}\n - Deadline: {deadline}\n - Time: {time}\n"
+
+  utter_ask_actionitem_form_action_item_text:
+    - text: "Please provide Action Item Text"
+  
+  utter_ask_actionitem_form_action_item_id:
+    - text: "Getting Action Item Id"
+
+  utter_ask_talking_point_form_talking_point_text:
+    - text: "Please provide Talking Point Text"
+
+  utter_ask_talking_point_form_talking_point_id:
+    - text: "Getting Talking Point Id"
+
+  utter_ask_talking_point_ask_id_talking_point_id_2:
+    - text: "Please Enter the Talking Point Id"
+
+  utter_ask_new_talking_point_form_talking_point_id_modify:
+    - text: "Which of the following talking point do you want to edit/delete?(Enter id)"
+
+  utter_ask_new_talking_point_form_new_talking_point_text:
+    - text: "Enter updated talking point text"
+
+  utter_ask_new_action_item_form_action_item_id_modify:
+    - text: "Which of the following action item do you want to edit/delete?(Enter id)"
+
+  utter_ask_new_action_item_form_field:
+    - text: "Enter the field that you want to edit/delete. (Text/Owners/Deadline)"
+
+  utter_ask_new_action_item_form_new_field_value:
+    - text: "PLease enter updated field value"
+
+  utter_ask_id_form_id:
+    - text: "Which of the following do you want to delete?(Enter id)"
+
+  utter_submit:
+    - text: "Form submitted"
+
+  utter_slots_values_actionitem_form:
+    - text: "Here's the information I've saved:\n - Id: {action_item_id}\n - Action Item Text: {action_item_text}\n - Owner: {owner}\n - Deadline: {deadline}\n "
+
+  utter_slots_values_actionitem_form_2:
+    - text: "Here's the information I've saved:\n - Id: {action_item_id_2}\n - Action Item Text: {action_item_text_2}\n - Owner: {owner_2}\n - Deadline: {deadline_2}\n" # - Time: {time}\n"
+
+  utter_slots_values_talking_point_form:
+    - text: "Here's the information I've saved:\n - Id: {talking_point_id}\n - Talking Point Text: {talking_point_text}\n"
+
+  utter_slots_values_talking_point_form_2:
+    - text: "Here's the information I've saved:\n - Id: {talking_point_id_2}\n - Talking Point Text: {talking_point_text_2}\n"
+
+  utter_default:
+    - text: "Sorry I didn't get that. Could you rephrase?"
+
+  utter_intent_add_talking_point:
+    - text: "Intent : Add Talking Point"
+  
+  utter_intent_edit_talking_point:
+    - text: "Intent : Edit Talking Point"
+  
+  utter_intent_delete_talking_point:
+    - text: "Intent : Delete Talking Point"
+
+  utter_intent_add_action_item:
+    - text: "Intent : Add Action Item"
+
+  utter_intent_edit_action_item:
+    - text: "Intent : Edit Action Item"
+
+  utter_intent_delete_action_item:
+    - text: "Intent : Delete Action Item"
+
+  utter_ask_id:
+    - text: "Which of the following do you want to edit/delete?(Enter id)..."
+
+  utter_ask_new_talking_point_text:
+    - text: "Enter updated talking point text..."
+
+  utter_get_owner:
+    - text: "Please provide an owner"
+
+
+forms:
+  actionitem_form:
+    #ignored_intents:
+      #- id
+    #required_slots:
+      #action_item_id:
+      #  - type: custom
+      #    action: action_get_action_item_id
+      action_item_text:
+      #- intent: actionitems
+      - type: from_text
+      owner:
+      #- entity: owner
+      #  type: from_entity  
+      - type: from_text   
+      #- deadline
+      time:
+      - entity: time
+        type: from_entity
+        
+
+  talking_point_form:
+    #ignored_intents:
+      #- id
+    #required_slots:
+      #talking_point_id:
+      #  - type: custom
+      #    action: action_get_talking_point_id
+      talking_point_text:
+      - type: from_text
+
+  new_talking_point_form:
+    #ignored_intents:
+      #- id
+    #required_slots:
+      talking_point_id_modify:
+      - type: from_text
+      new_talking_point_text:
+      - type: from_text
+
+  new_action_item_form:
+    #ignored_intents:
+      #- id
+    #required_slots:
+      action_item_id_modify:
+      - type: from_text
+      field:
+      - type: from_text
+      new_field_value:
+      - type: from_text
+
+  id_form:
+    #ignored_intents:
+      #- id
+    #required_slots:
+      id:
+      - type: from_text
+
+  actionitem_form_2:
+    #required_slots:
+      action_item_text_2:
+      - type: from_text
+      owner_2:
+      - entity: owner
+        type: from_entity
+        
+      #- deadline_2
+      time:
+      - entity: time
+        type: from_entity
+        
+
+  talking_point_form_2:
+    #required_slots:
+      talking_point_text_2:
+      - type: from_text
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

@@ -1,0 +1,220 @@
+version: "2.0"
+
+nlu:
+#- intent: greet
+#  examples: |
+#    - hey
+#    - hello
+#    - hi
+#    - hello there
+#    - good morning
+#    - good evening
+#    - moin
+#    - hey there
+#    - let's go
+#    - hey dude
+#    - goodmorning
+#    - goodevening
+#    - good afternoon
+
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - hey there
+    - good afternoon
+
+#- intent: goodbye
+  #examples: |
+    #- cu
+    #- good by
+    #- cee you later
+    #- good night
+    #- bye
+    #- goodbye
+    #- have a nice day
+    #- see you around
+    #- bye bye
+    #- see you later
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: id
+  examples: |
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 43
+    - 90
+    - 100
+
+- intent: add_talking_point
+  examples: |
+    - Add talking point
+    - Add talking points
+    - Take down this talking point
+    - Fogcub take down this talking point
+    - Add this talking point
+    - Fogcub add this talking point
+    - New talking point
+    - This is a talking point
+    - Note this talking point
+    - Fogcub note this talking point
+
+- intent: add_action_item
+  examples: |
+    - Add action item
+    - Add action items
+    - Take down this action item
+    - Fogcub take down this action item
+    - Assign action item
+    - Fogcub assign action item
+    - Add this action item
+    - Fogcub add this action item
+    - New action item
+    - This is an action item
+    - Note this action item
+    - Fogcub note this action item
+
+- intent: edit_talking_point
+  examples: |
+    - Edit talking point
+    - Edit talking points
+    - Edit this talking point
+    - Edit talking point [1](id)
+    - Edit talking point [2](id)
+    - Edit talking point [3](id)
+    - Fogcub edit this talking point
+    - Fogcub edit talking point [4](id)
+    - Fogcub edit talking point [5](id)
+    - Fogcub edit talking point [6](id)
+    - Update this talking point
+    - Fogcub update this talking point
+    - Change talking point
+
+- intent: edit_action_item
+  examples: |
+    - Edit action item
+    - Edit action items
+    - Edit this action item
+    - Fogcub edit this action item
+    - Update this action item
+    - Fogcub update this action item
+    - Change action item
+    - Edit the owners of this action item
+    - Update the owners of this action item
+    - Edit the deadline of this action item
+    - Update the deadline of this action item
+    - Postpone the deadline of this action item
+    - Prepone the deadline of this action item
+    - Postpone this action item
+    - Prepone action item
+
+- intent: delete_talking_point
+  examples: |
+    - Delete talking point
+    - Delete talking points
+    - Delete this talking point
+    - Fogcub delete this talking point
+    - Remove this talking point
+    - Fogcub remove this talking point
+    - Clear this talking point
+    - Fogcub clear this talking point
+    - Scratch this talking point
+    - Fogcub scratch this talking point
+    - Discard this talking point
+    - Fogcub discard this talking point
+
+- intent: delete_action_item
+  examples: |
+    - Delete action item
+    - Delete action items
+    - Delete this action item
+    - Delete action item [7](id)
+    - Fogcub delete this talking point
+    - Remove this talking point
+    - Fogcub remove this talking point
+    - Clear this talking point
+    - Fogcub clear this talking point
+    - Scratch this talking point
+    - Fogcub scratch this talking point
+    - Discard this talking point
+    - Fogcub discard this talking point
+
+- intent: show_talking_points
+  examples: |
+    - Show me the list of talking points
+    - Fogcub show me the list of talking points
+    - Give me the list of talking points
+    - Fogcub list all talking points
+    - Show all talking points
+    - View talking points
+    - View all talking points
+    - fetch talking items
+    - display talking items
+- intent: show_action_items
+  examples: |
+    - Show me the list of action items
+    - Fogcub show me the list of action items
+    - Give me the list of action items
+    - Fogcub list all action items
+    - Show all action items
+    - View action items
+    - View all action items
+    - fetch action items
+    - display action items
+#- intent: talking_points
+#  examples: |
+ #  - We need to make a presentation
+  # - Your quarterlies look very good
+   #- Permission granted
+   #- All the test cases ran optimally
+   #- The core compression algorithm is optimal
+   #- We've all read the latest sales agreement
+   #- That is a beta of their entire mobile platform
+   #- We need daily active users
+   #- I need you focused on making as many of them as possible, as fast as possible
+   #- To date, we have manufactured almost 400,000 mobile devices
+   #- We coded a diagnostic tool
+
+#- intent: actionitems
+ # examples: |
+  # - Set up a meeting with [Person 1](owner) at 6 pm
+   #- Remind [Person 2](owner) to send the email
+   #- Speak to clients on the phone
+   #- Draw up the paperwork
+   #- You have ten weeks to complete a working prototype before the deal expires
+   #- [I](owner) have a board meeting
+   #- [We](owner) will be reconvening tomorrow
+   #- [Person 10](owner) is gonna set up a focus group for the platform
+   #- [I](owner) wanna move up our launch
+   #- [We](owner) have to do it manually
+   #- I need a sit-down with [aakanksha](owner)
+   #- I need to convene with [aaradhana](owner)
+   #- Arrange me a meeting with [inderjeet](owner)
+   #- Fix me up with [irfan](owner)
+   #- Set up an appointment with [kabir](owner)
+   #- Set up a rendezvous with [Kanik](owner)
+   #- Give me a date with [Amit](owner)
+   #- Give me an appointment with [Ravin](owner)
+   #- I want a date with [Tanmay](owner)
+   #- Set me up to meet [Nagendra](owner)
+   #- I need an appointment with [Yash](owner)
+   #- Schedule a meeting with [Neeshi](owner)
+   #- Arrange a meeting with [Samarth](owner)
+   #- Set Up CI CD pipeline
